@@ -17,13 +17,14 @@
       </div>
     </div>
     <div class="post-date text-faded">
-      {{post.publishedAt}}
+      <AppDate :timestamp="post.publishedAt"/>
     </div>
   </div>
 </template>
 
 <script>
 import sourceData from '@/data'
+
 export default {
   props: {
     post: {
