@@ -38,7 +38,7 @@ export default {
     },
 
     userPostsCount () {
-      return Object.keys(this.user.posts).lenght
+      return Object.keys(this.user.posts).length
     }
   }
 }
