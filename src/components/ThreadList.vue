@@ -1,14 +1,12 @@
 <template>
-  <div class="col-full">
-    <div class="thread-list">
-      <h2 class="list-title">Threads</h2>
+  <div class="thread-list">
+    <h2 class="list-title">Threads</h2>
 
-      <ThreadListItem 
-        v-for="thread in threads" 
-        :key="thread['.key']" 
-        :thread="thread"
-      />
-    </div>
+    <ThreadListItem 
+      v-for="thread in threads" 
+      :key="thread['.key']" 
+      :thread="thread"
+    />
   </div>
 </template>
 

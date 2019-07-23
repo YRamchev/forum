@@ -1,31 +1,24 @@
 <template>
   <div class="col-large push-top">
-    <h1>{{ thread.title }}</h1>
+    <h1 class="text-left">{{ thread.title }}</h1>
+    <p class="text-left">
+      By <a href="#" class="link-unstyled">Robin</a>, <AppDate :timestamp="thread.publishedAt"/>.
+      <span style="float:right; margin-top: 2px;" class="hide-mobile text-faded text-small">3 replies by 3 contributors</span>
+    </p>
     <PostList :posts="posts"/>
 
-    <form @submit.prevent="addPost">
-      <div class="form-group">
-        <textarea 
-          name="" 
-          id="" 
-          cols="30" 
-          class="form-input"
-          rows="10" 
-          v-model="newPostText"
-        ></textarea>
-      </div>
-      <div class="form-action">
-        <button class="btn-blue">
-          Submit Form
-        </button>
-      </div>
-    </form>
+    <PostEditor
+      @save="addPost"
+      :threadId="id"
+    />
   </div>
 </template>
 
 <script>
 import sourceData from '@/data'
 import PostList from '@/components/PostList'
+import PostEditor from '@/components/PostEditor'
+
 console.log(sourceData)
 export default {
   props: {
@@ -36,13 +29,13 @@ export default {
   },
 
   components: {
-    PostList
+    PostList,
+    PostEditor
   },
 
   data () {
     return {
-      thread: sourceData.threads[this.id],
-      newPostText: ''
+      thread: sourceData.threads[this.id]
     }
   },
 
@@ -53,23 +46,12 @@ export default {
         .filter(post => postIds.includes(post['.key']))
     }
   },
-
   methods: {
-    addPost () {
-      const postId = 'greatPost' + Math.random()
-
-      const post = {
-        text: this.newPostText,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.id,
-        userId: 'VXjpr2WHa8Ux4Bnggym8QFLdv5C3',
-        '.key': postId
-      }
-
+    addPost ({post}) {
+      const postId = post['.key']
       this.$set(sourceData.posts, postId, post)
       this.$set(this.thread.posts, postId, postId)
       this.$set(sourceData.users[post.userId].posts, postId, postId)
-      this.newPostText = ''
     }
   }
 }
