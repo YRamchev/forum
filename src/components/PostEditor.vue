@@ -19,8 +19,6 @@
 </template>
 
 <script>
-// import sourceData from '@/data'
-
 export default {
   props: {
     threadId: {
