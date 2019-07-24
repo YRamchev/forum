@@ -1,25 +1,32 @@
 <template>
-  <div>
+  <div class="col-full">
+    <h1>{{ category.name }}</h1>
     <CategoryListItem 
-      v-for="category in categories" 
-      :key="category['.key']" 
-      :category="category"/>
+      :category="category"
+    />
   </div>
 </template>
 
 <script>
 import CategoryListItem from '@/components/CategoryListItem'
+import sourceData from '@/data'
 
 export default {
   props: {
-    categories: {
-      type: Array,
+    id: {
+      type: String,
       required: true
     }
   },
 
   components: {
     CategoryListItem
+  },
+
+  computed: {
+    category () {
+      return sourceData.categories[this.id]
+    }
   }
 }
 </script>
