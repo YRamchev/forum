@@ -41,7 +41,7 @@
       </div>
 
       <div class="btn-group space-between">
-        <router-link :to="{name: 'PageProfile'}" class="btn-ghost">Cancel</router-link>
+        <button @click.prevent="cancel" class="btn-ghost">Cancel</button>
         <button type="submit" @click.prevent="save" class="btn-blue">Save</button>
       </div>
     </div>
@@ -76,6 +76,11 @@ export default {
   methods: {
     save () {
       this.$store.dispatch('updateUser', this.activeUser)
+      this.$router.push({name: 'PageProfile'})
+    },
+
+    cancel () {
+      this.$router.push({name: 'PageProfile'})
     }
   }
 }

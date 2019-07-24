@@ -1,6 +1,6 @@
 <template>
   <header class="header" id="header">
-    <router-link :to="'Home'" class="logo">
+    <router-link :to="{name: 'Home'}" class="logo">
       <img src="../assets/img/svg/vueschool-logo.svg">
     </router-link>
 
@@ -15,13 +15,13 @@
     <nav class="navbar">
       <ul>
         <li class="navbar-user">
-          <a href="#">
+          <router-link :to="{name: 'PageProfile'}">
             <img class="avatar-small" :src="user.avatar" alt="">
             <span>
               {{ user.name }}
               <img class="icon-profile" src="@/assets/img/svg/arrow-profile.svg" alt="">
             </span>
-          </a>
+          </router-link>
 
           <!-- dropdown menu -->
           <!-- add class "active-drop" to show the dropdown -->
@@ -37,7 +37,7 @@
         
       <ul>
         <li class="navbar-item">
-          <a href="index.html">Home</a>
+          <router-link :to="{name: 'Home'}" class="logo">Home</router-link>
         </li>
         <li class="navbar-item">
           <a href="category.html">Category</a>
@@ -50,7 +50,7 @@
         </li>
         <!-- Show these option only on mobile-->
         <li class="navbar-item mobile-only">
-          <a href="profile.html">My Profile</a>
+          <router-link :to="{name: 'PageProfile'}">My Profile</router-link>
         </li>
         <li class="navbar-item mobile-only">
           <a href="#">Logout</a>
