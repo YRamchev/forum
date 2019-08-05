@@ -1,5 +1,5 @@
 <template>
-<div class="thread">
+<div v-if="thread && user" class="thread">
   <div>
     <p class="text-left">
       <router-link :to="{name: 'ThreadShow', params: {id: thread['.key']}}">

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-grid">
+  <div v-if="asyncDataStatus_ready" class="flex-grid">
     <UserProfileCard 
       v-if="!edit"
       :user="user"
@@ -30,6 +30,7 @@ import PostList from '@/components/PostList'
 import UserProfileCard from '@/components/UserProfileCard'
 import UserProfileCardEditor from '@/components/UserProfileCardEditor'
 import {mapGetters} from 'vuex'
+import asyncDataStatus from '@/mixins/asyncDataStatus'
 
 export default {
   components: {
@@ -45,18 +46,23 @@ export default {
     }
   },
 
+  mixins: [asyncDataStatus],
+
   computed: {
     ...mapGetters({
       user: 'authUser'
     }),
 
     userPosts () {
-      if (this.user.posts) {
-        return Object.values(this.$store.state.posts)
-          .filter(post => post.userId === this.user['.key'])
-      }
-      return []
+      return this.$store.getters.userPosts(this.user['.key'])
     }
+  },
+
+  created () {
+    this.$store.dispatch('fetchPosts', {ids: this.user.posts})
+      .then(() => {
+        this.asyncDataStatus_fetched()
+      })
   }
 }
 </script>

@@ -504,7 +504,7 @@ figcaption {
 }
 
 .post-content blockquote.small {
-    display: flex;
+/ / display: flex;
     position: relative;
     flex-direction: column;
     border: 2px solid rgba(152, 152, 152, 0.15);
@@ -932,7 +932,6 @@ ul {
     display:flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: center;
 }
 
 .navbar ul {
