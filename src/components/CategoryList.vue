@@ -13,7 +13,7 @@ import CategoryListItem from '@/components/CategoryListItem'
 export default {
   props: {
     categories: {
-      type: Object,
+      type: Array,
       required: true
     }
   },

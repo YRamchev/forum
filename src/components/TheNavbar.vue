@@ -28,7 +28,7 @@
           <div class="triangle-drop"></div>
           <ul class="dropdown-menu">
             <li class="dropdown-menu-item"><router-link :to="{name: 'PageProfile'}">View profile</router-link></li>
-            <li class="dropdown-menu-item"><a @click.prevent="$store.dispatch('signOut')" href="#">Log out</a></li>
+            <li class="dropdown-menu-item"><a @click.prevent="$store.dispatch('auth/signOut')" href="#">Log out</a></li>
           </ul>
         </div>
       </li>
@@ -65,7 +65,7 @@
         <a href="profile.html">My Profile</a>
       </li>
       <li class="navbar-item mobile-only">
-        <a @click.prevent="$store.dispatch('signOut')" href="#">Logout</a>
+        <a @click.prevent="$store.dispatch('auth/signOut')" href="#">Logout</a>
       </li>
     </ul>
     </nav>
@@ -84,7 +84,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      'user': 'authUser'
+      'user': 'auth/authUser'
     })
   }
 }

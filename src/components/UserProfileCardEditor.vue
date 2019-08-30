@@ -56,14 +56,6 @@ export default {
     user: {
       type: Object,
       required: true
-    },
-    userPostsCount: {
-      type: Number,
-      required: true
-    },
-    userThreadsCount: {
-      type: Number,
-      required: true
     }
   },
 
@@ -73,9 +65,19 @@ export default {
     }
   },
 
+  computed: {
+    userPostsCount () {
+      return this.$store.getters['users/userPostsCount'](this.user['.key'])
+    },
+
+    userThreadsCount () {
+      return this.$store.getters['users/userThreadsCount'](this.user['.key'])
+    }
+  },
+
   methods: {
     save () {
-      this.$store.dispatch('updateUser', this.activeUser)
+      this.$store.dispatch('users/updateUser', this.activeUser)
       this.$router.push({name: 'PageProfile'})
     },
 
