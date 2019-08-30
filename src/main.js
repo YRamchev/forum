@@ -4,6 +4,8 @@ import router from './router'
 import AppDate from '@/components/AppDate'
 import store from '@/store'
 import firebase from 'firebase/app'
+import vuelidate from 'vuelidate'
+Vue.use(vuelidate)
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -32,7 +34,6 @@ new Vue({
   components: { App },
 
   beforeCreate () {
-    console.log(store.state.authId)
-    store.dispatch('fetchUser', {id: store.state.authId})
+    store.dispatch('users/fetchUser', {id: store.state.authId})
   }
 })
